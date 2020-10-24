@@ -12,3 +12,7 @@ Format code: `poetry run black .`
 ## Difference from original ke2daira
 
 `ke2daira.py` only supports switching the head of the first word and the one of the last word.
+
+## License
+
+Apache-2.0
