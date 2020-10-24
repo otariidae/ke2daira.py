@@ -1,15 +1,22 @@
-from janome.tokenizer import Tokenizer
+from janome.tokenizer import Tokenizer, Token  # type: ignore
 from functools import reduce
-from operator import add, attrgetter
+from operator import add
 
 t = Tokenizer()
 
 TANGO_SEPARATOR = " "
+NO_READING = "*"
+
+
+def get_reading_from_token(token: Token) -> str:
+    if token.reading == NO_READING:
+        return token.surface
+    return token.reading
 
 
 def tango2yomi(tango: str) -> str:
     tokens = t.tokenize(tango)
-    yomi = reduce(add, map(attrgetter("reading"), tokens))
+    yomi = reduce(add, map(get_reading_from_token, tokens))
     return yomi
 
 
