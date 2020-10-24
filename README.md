@@ -2,6 +2,20 @@
 
 A Python implementation of [ke2daira](https://github.com/ryuichiueda/ke2daira)
 
+## Installation
+
+```
+$ pip install ke2daira
+```
+
+## Usage
+
+```py
+from ke2daira import ke2dairanize
+
+print(ke2dairanize("松平 健")) # "ケツダイラ マン"
+```
+
 ## Development
 
 Install dependencies with poetry: `poetry install` \
