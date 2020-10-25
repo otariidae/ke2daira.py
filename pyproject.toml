@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ke2daira"
-version = "0.1.1"
+version = "0.1.2"
 description = "A Python implementaion of ke2daira"
 authors = ["otariidae <otariidae@users.noreply.github.com>"]
 license = "Apache-2.0"
