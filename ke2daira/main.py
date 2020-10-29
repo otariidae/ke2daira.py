@@ -1,6 +1,7 @@
 from janome.tokenizer import Tokenizer, Token  # type: ignore
 from functools import reduce
 from operator import add
+from .kana2mora import katakana2mora
 
 t = Tokenizer()
 
@@ -28,15 +29,18 @@ def ke2dairanize(text: str) -> str:
     if len(tangos) == 1:
         return tangos[0]
 
-    first_tango = yomis[0]
-    first_tango_head = first_tango[0]
-    first_tango_tail = first_tango[1:]
+    first_tango_moras = katakana2mora(yomis[0])
+    first_tango_head = first_tango_moras[0]
+    first_tango_tail_moras = first_tango_moras[1:]
 
-    last_tango = yomis[-1]
-    last_tango_head = last_tango[0]
-    last_tango_tail = last_tango[1:]
+    last_tango_moras = katakana2mora(yomis[-1])
+    last_tango_head = last_tango_moras[0]
+    last_tango_tail_moras = last_tango_moras[1:]
 
-    yomis[0] = last_tango_head + first_tango_tail
-    yomis[-1] = first_tango_head + last_tango_tail
+    new_first_tango_moras = [last_tango_head] + first_tango_tail_moras
+    new_last_tango_moras = [first_tango_head] + last_tango_tail_moras
+
+    yomis[0] = "".join(new_first_tango_moras)
+    yomis[-1] = "".join(new_last_tango_moras)
 
     return TANGO_SEPARATOR.join(yomis)
