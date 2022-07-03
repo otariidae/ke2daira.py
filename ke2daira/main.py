@@ -1,4 +1,4 @@
-from janome.tokenizer import Tokenizer, Token  # type: ignore
+from janome.tokenizer import Tokenizer, Token
 from functools import reduce
 from operator import add
 from .kana2mora import katakana2mora

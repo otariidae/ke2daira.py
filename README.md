@@ -19,7 +19,7 @@ print(ke2dairanize("松平 健")) # "ケツダイラ マン"
 ## Development
 
 Install dependencies with poetry: `poetry install` \
-Run type check: `poetry run mypy .` \
+Run type check: `poetry run mypy --strict .` \
 Run tests: `poetry run pytest` \
 Format code: `poetry run black .`
 
