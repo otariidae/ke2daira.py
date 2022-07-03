@@ -29,6 +29,6 @@ jobs:
         pip install poetry
         poetry install
     - name: Type check with mypy
-      run: poetry run mypy .
+      run: poetry run mypy --strict .
     - name: Test with pytest
       run: poetry run pytest
