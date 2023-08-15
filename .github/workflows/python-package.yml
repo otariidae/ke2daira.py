@@ -32,3 +32,5 @@ jobs:
       run: poetry run mypy --strict .
     - name: Test with pytest
       run: poetry run pytest
+    - name: Lint with ruff
+      run: poetry run ruff check --format github .

@@ -1,12 +1,12 @@
-from typing import Iterator, Union
+from typing import Iterator
 
 class Token:
     reading: str
     surface: str
 
 class Tokenizer:
-    def __init__(
-        self,
+    def __init__(  # noqa: PLR0913
+        self: Tokenizer,
         udic: str = ...,
         *,
         udic_enc: str = ...,
@@ -14,15 +14,15 @@ class Tokenizer:
         max_unknown_length: int = ...,
         wakati: bool = ...,
         mmap: bool = ...,
-        dotfile: str = ...
+        dotfile: str = ...,
     ) -> None: ...
     def tokenize(
-        self,
+        self: Tokenizer,
         text: str,
         *,
         wakati: bool = ...,
         baseform_unk: bool = ...,
-        dotfile: str = ...
+        dotfile: str = ...,
     ) -> Iterator[Token]: ...
 
-class WakatiModeOnlyException(Exception): ...
+class WakatiModeOnlyException(Exception): ...  # noqa: N818

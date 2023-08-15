@@ -1,3 +1,4 @@
+# ruff: noqa: S101
 from ke2daira.kana2mora import katakana2mora
 
 
