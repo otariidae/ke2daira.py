@@ -28,9 +28,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install poetry
         poetry install
+    - name: Lint with ruff
+      run: poetry run ruff check --format github .
     - name: Type check with mypy
       run: poetry run mypy --strict .
     - name: Test with pytest
       run: poetry run pytest
-    - name: Lint with ruff
-      run: poetry run ruff check --format github .
