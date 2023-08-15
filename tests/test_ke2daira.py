@@ -1,3 +1,4 @@
+# ruff: noqa: S101
 from ke2daira import __version__, ke2dairanize
 
 

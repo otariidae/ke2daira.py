@@ -1,13 +1,13 @@
 # Python port of https://github.com/otariidae/kana2mora
 
-from typing import List
+from __future__ import annotations
 
 SUTEKANA = {"ァ", "ィ", "ゥ", "ェ", "ォ", "ャ", "ュ", "ョ", "ヮ"}
 
 
-def katakana2mora(kana: str) -> List[str]:
+def katakana2mora(kana: str) -> list[str]:
     chars = list(kana)
-    moras: List[str] = []
+    moras: list[str] = []
     for char in chars:
         if char in SUTEKANA:
             previous_char = "" if len(moras) == 0 else moras.pop()
