@@ -28,3 +28,7 @@ def test_atou_kai() -> None:
 
 def test_harry_potter() -> None:
     assert ke2dairanize("ハリー ジェームズ ポッター") == "ポリー ジェームズ ハッター"
+
+
+def test_genzo() -> None:
+    assert ke2dairanize("源蔵") == "ゲンゾウ"

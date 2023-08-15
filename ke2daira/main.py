@@ -28,7 +28,7 @@ def ke2dairanize(text: str) -> str:
     yomis = list(map(tango2yomi, tangos))
 
     if len(tangos) == 1:
-        return tangos[0]
+        return yomis[0]
 
     first_tango_moras = katakana2mora(yomis[0])
     first_tango_head = first_tango_moras[0]
