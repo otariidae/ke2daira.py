@@ -1,19 +1,22 @@
-[tool.poetry]
+[project]
 name = "ke2daira"
 version = "0.2.0"
 description = "A Python implementaion of ke2daira"
-authors = ["otariidae <otariidae@users.noreply.github.com>"]
+authors = [
+    { name = "otariidae", email = "otariidae@users.noreply.github.com" }
+]
 license = "Apache-2.0"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "Janome>=0.4.1,<1.0.0"
+]
 
+[project.urls]
 homepage = "https://github.com/otariidae/ke2daira.py"
 repository = "https://github.com/otariidae/ke2daira.py"
-readme = "README.md"
 
-[tool.poetry.dependencies]
-python = "^3.9"
-Janome = "^0.4.1"
-
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "^8.4"
 black = "^25.1"
 mypy = "^1.16"
