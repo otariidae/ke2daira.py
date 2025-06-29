@@ -10,7 +10,7 @@ repository = "https://github.com/otariidae/ke2daira.py"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 Janome = "^0.4.1"
 
 [tool.poetry.dev-dependencies]
@@ -25,7 +25,7 @@ strict = true
 [tool.ruff]
 select = ["ALL"]
 ignore = ["D"]
-target-version = "py38"
+target-version = "py39"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
