@@ -31,7 +31,7 @@ jobs:
     - name: Lint pyproject.toml
       run: poetry check --strict
     - name: Lint with ruff
-      run: poetry run ruff check --format github .
+      run: poetry run ruff check --output-format github .
     - name: Type check with mypy
       run: poetry run mypy --strict .
     - name: Test with pytest
