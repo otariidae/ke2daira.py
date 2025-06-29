@@ -28,6 +28,8 @@ jobs:
       run: pipx install poetry==2.1.1
     - name: Install dependencies
       run: poetry sync
+    - name: Lint pyproject.toml
+      run: poetry check --strict
     - name: Lint with ruff
       run: poetry run ruff check --format github .
     - name: Type check with mypy
