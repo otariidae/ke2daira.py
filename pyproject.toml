@@ -16,7 +16,7 @@ Janome = "^0.4.1"
 [tool.poetry.dev-dependencies]
 pytest = "^8.4"
 black = "^25.1"
-mypy = "^0.961"
+mypy = "^1.16"
 ruff = "^0.0.284"
 
 [tool.mypy]
