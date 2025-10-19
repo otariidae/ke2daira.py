@@ -18,7 +18,7 @@ repository = "https://github.com/otariidae/ke2daira.py"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4"
-black = "^25.1"
+black = "^25.9"
 mypy = "^1.18"
 ruff = "^0.13.2"
 
