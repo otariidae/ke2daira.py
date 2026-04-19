@@ -31,8 +31,63 @@ target-version = "py310"
 select = ["ALL"]
 ignore = ["D"]
 
+[tool.poe.tasks]
+check = ["check-meta", "lint", "typecheck", "test"]
+fix = ["format", "lint-fix"]
+package-check = ["build", "smoke"]
+
+check-meta = "poetry check --strict"
+format = "ruff format ."
+lint = "ruff check ."
+lint-ci = "ruff check --output-format github ."
+lint-fix = "ruff check --fix ."
+typecheck = "mypy --strict ."
+test = "pytest"
+build = "poetry build"
+
+[tool.poe.tasks.smoke]
+interpreter = "python"
+shell = """
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
+import venv
+
+dist_dir = Path("dist")
+wheels = sorted(dist_dir.glob("*.whl"))
+if len(wheels) != 1:
+    raise SystemExit(f"Expected exactly one wheel in {dist_dir}, found {len(wheels)}")
+
+with tempfile.TemporaryDirectory() as tmpdir:
+    tmpdir_path = Path(tmpdir)
+    venv.EnvBuilder(with_pip=True).create(tmpdir_path / "venv")
+
+    scripts_dir = "Scripts" if sys.platform == "win32" else "bin"
+    pip = tmpdir_path / "venv" / scripts_dir / ("pip.exe" if sys.platform == "win32" else "pip")
+    python = tmpdir_path / "venv" / scripts_dir / ("python.exe" if sys.platform == "win32" else "python")
+
+    subprocess.run([str(pip), "install", str(wheels[0])], check=True)
+    subprocess.run(
+        [
+            str(python),
+            "-c",
+            (
+                "from importlib.metadata import version; "
+                "from ke2daira import __version__, ke2dairanize; "
+                "assert __version__ == version('ke2daira'); "
+                "assert ke2dairanize('松平 健') == 'ケツダイラ マン'"
+            ),
+        ],
+        check=True,
+    )
+"""
+
 [tool.poetry]
 requires-poetry = ">=2.2"
+
+[tool.poetry.requires-plugins]
+poethepoet = { version = "^0.44.0", extras = ["poetry_plugin"] }
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
