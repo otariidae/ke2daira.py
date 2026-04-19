@@ -21,7 +21,7 @@ print(ke2dairanize("松平 健")) # "ケツダイラ マン"
 Install dependencies with poetry: `poetry install` \
 Run type check: `poetry run mypy .` \
 Run tests: `poetry run pytest` \
-Format code: `poetry run black .` \
+Format code: `poetry run ruff format .` \
 Lint and fix code: `poetry run ruff check --fix .`
 
 
