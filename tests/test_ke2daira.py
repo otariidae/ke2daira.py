@@ -1,11 +1,13 @@
 # ruff: noqa: S101
+from importlib.metadata import version
+
 import pytest
 
 from ke2daira import __version__, ke2dairanize
 
 
 def test_version() -> None:
-    assert __version__ == "0.2.0"
+    assert __version__ == version("ke2daira")
 
 
 def test_matsudaira_ken() -> None:

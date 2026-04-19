@@ -1,5 +1,7 @@
+from importlib.metadata import version
+
 from .main import ke2dairanize
 
-__version__ = "0.2.0"
+__version__ = version("ke2daira")
 
-__all__ = ["ke2dairanize"]
+__all__ = ["__version__", "ke2dairanize"]
