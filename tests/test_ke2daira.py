@@ -10,30 +10,21 @@ def test_version() -> None:
     assert __version__ == version("ke2daira")
 
 
-def test_matsudaira_ken() -> None:
-    assert ke2dairanize("松平 健") == "ケツダイラ マン"
-
-
-def test_paul_maccartney() -> None:
-    assert ke2dairanize("ポール マッカートニー") == "マール ポッカートニー"
-
-
-def test_che_guevara() -> None:
-    assert ke2dairanize("チェ ゲバラ") == "ゲ チェバラ"
-
-
-def test_katou_ai() -> None:
-    assert ke2dairanize("加藤 あい") == "アトウ カイ"
+@pytest.mark.parametrize(
+    ("src", "expected"),
+    [
+        ("松平 健", "ケツダイラ マン"),
+        ("ポール マッカートニー", "マール ポッカートニー"),
+        ("チェ ゲバラ", "ゲ チェバラ"),
+        ("加藤 あい", "アトウ カイ"),
+        ("ハリー ジェームズ ポッター", "ポリー ジェームズ ハッター"),
+        ("源蔵", "ゲンゾウ"),
+    ],
+)
+def test_ke2dairanize(src: str, expected: str) -> None:
+    assert ke2dairanize(src) == expected
 
 
 @pytest.mark.xfail(reason="快がココロヨと読まれてしまう")
 def test_atou_kai() -> None:
     assert ke2dairanize("阿藤 快") == "カトウ アイ"
-
-
-def test_harry_potter() -> None:
-    assert ke2dairanize("ハリー ジェームズ ポッター") == "ポリー ジェームズ ハッター"
-
-
-def test_genzo() -> None:
-    assert ke2dairanize("源蔵") == "ゲンゾウ"
