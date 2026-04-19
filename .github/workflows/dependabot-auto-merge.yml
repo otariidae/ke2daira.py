@@ -23,8 +23,16 @@ jobs:
       with:
         github-token: ${{ github.token }}
 
+    - name: Create GitHub App token
+      if: contains(fromJSON('["version-update:semver-patch", "version-update:semver-minor"]'), steps.metadata.outputs.update-type) && steps.metadata.outputs.maintainer-changes != 'true'
+      id: app-token
+      uses: actions/create-github-app-token@v3
+      with:
+        app-id: ${{ vars.APP_ID }}
+        private-key: ${{ secrets.PRIVATE_KEY }}
+
     - name: Enable auto-merge for safe updates
       if: contains(fromJSON('["version-update:semver-patch", "version-update:semver-minor"]'), steps.metadata.outputs.update-type) && steps.metadata.outputs.maintainer-changes != 'true'
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ steps.app-token.outputs.token }}
       run: gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
