@@ -28,14 +28,14 @@ jobs:
     - name: Install dependencies
       run: poetry sync
     - name: Lint pyproject.toml
-      run: poetry run poe check-meta
+      run: poetry poe check-meta
     - name: Lint with ruff
-      run: poetry run poe lint-ci
+      run: poetry poe lint-ci
     - name: Type check with mypy
-      run: poetry run poe typecheck
+      run: poetry poe typecheck
     - name: Test with pytest
-      run: poetry run poe test
+      run: poetry poe test
     - name: Build package
-      run: poetry run poe build
+      run: poetry poe build
     - name: Smoke test built wheel
-      run: poetry run poe smoke
+      run: poetry poe smoke

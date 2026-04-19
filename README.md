@@ -21,10 +21,10 @@ print(ke2dairanize("松平 健")) # "ケツダイラ マン"
 ## Development
 
 Install dependencies with poetry: `poetry sync` \
-Run the regular checks: `poetry run poe check` \
-Run the package build and smoke test: `poetry run poe package-check` \
-Format code: `poetry run poe format` \
-Lint and fix code: `poetry run poe lint-fix`
+Run the regular checks: `poetry poe check` \
+Run the package build and smoke test: `poetry poe package-check` \
+Format code: `poetry poe format` \
+Lint and fix code: `poetry poe lint-fix`
 
 
 ## Difference from original ke2daira
