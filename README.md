@@ -8,6 +8,8 @@ A Python implementation of [ke2daira](https://github.com/ryuichiueda/ke2daira)
 $ pip install ke2daira
 ```
 
+Requires Python 3.10 or newer.
+
 ## Usage
 
 ```py
