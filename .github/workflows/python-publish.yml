@@ -1,20 +1,20 @@
-# This workflows will upload a Python Package using Twine when a release is created
-# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
+# Build distributions with Poetry and publish them to PyPI via trusted publishing.
 
-name: Upload Python Package
+name: Publish Python Package
 
 on:
   push:
     tags:
       - "*.*.*"
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
-  deploy:
-
+  publish:
     runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/ke2daira
+    permissions:
+      id-token: write
 
     steps:
     - uses: actions/checkout@v5
@@ -29,7 +29,6 @@ jobs:
     - name: Build package
       run: poetry build
     - name: Publish to PyPI
-      if: startsWith(github.ref, 'refs/tags/')
-      run: poetry publish
-      env:
-        POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        packages-dir: dist/
