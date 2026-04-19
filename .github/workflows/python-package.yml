@@ -36,3 +36,24 @@ jobs:
       run: poetry run mypy --strict .
     - name: Test with pytest
       run: poetry run pytest
+
+  package:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v5
+    - name: Set up Python
+      uses: actions/setup-python@v6
+      with:
+        python-version-file: .python-version
+    - name: Install poetry
+      run: pipx install poetry==2.1.1
+    - name: Install dependencies
+      run: poetry sync
+    - name: Build package
+      run: poetry build
+    - name: Smoke test built wheel
+      run: |
+        python -m venv .venv-smoke
+        .venv-smoke/bin/pip install dist/*.whl
+        .venv-smoke/bin/python -c "from importlib.metadata import version; from ke2daira import __version__, ke2dairanize; assert __version__ == version('ke2daira'); assert ke2dairanize('松平 健') == 'ケツダイラ マン'"
