@@ -28,17 +28,14 @@ jobs:
     - name: Install dependencies
       run: poetry sync
     - name: Lint pyproject.toml
-      run: poetry check --strict
+      run: poetry run poe check-meta
     - name: Lint with ruff
-      run: poetry run ruff check --output-format github .
+      run: poetry run poe lint-ci
     - name: Type check with mypy
-      run: poetry run mypy --strict .
+      run: poetry run poe typecheck
     - name: Test with pytest
-      run: poetry run pytest
+      run: poetry run poe test
     - name: Build package
-      run: poetry build
+      run: poetry run poe build
     - name: Smoke test built wheel
-      run: |
-        python -m venv .venv-smoke
-        .venv-smoke/bin/pip install dist/*.whl
-        .venv-smoke/bin/python -c "from importlib.metadata import version; from ke2daira import __version__, ke2dairanize; assert __version__ == version('ke2daira'); assert ke2dairanize('松平 健') == 'ケツダイラ マン'"
+      run: poetry run poe smoke
