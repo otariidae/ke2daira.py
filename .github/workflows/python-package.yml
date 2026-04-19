@@ -11,7 +11,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -36,3 +35,10 @@ jobs:
       run: poetry run mypy --strict .
     - name: Test with pytest
       run: poetry run pytest
+    - name: Build package
+      run: poetry build
+    - name: Smoke test built wheel
+      run: |
+        python -m venv .venv-smoke
+        .venv-smoke/bin/pip install dist/*.whl
+        .venv-smoke/bin/python -c "from importlib.metadata import version; from ke2daira import __version__, ke2dairanize; assert __version__ == version('ke2daira'); assert ke2dairanize('松平 健') == 'ケツダイラ マン'"
