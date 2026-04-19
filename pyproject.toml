@@ -9,7 +9,7 @@ license = "Apache-2.0"
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
-    "Janome>=0.4.1,<1.0.0"
+    "janome (>=0.5.0,<0.6.0)"
 ]
 
 [project.urls]
@@ -19,7 +19,7 @@ repository = "https://github.com/otariidae/ke2daira.py"
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4"
 mypy = "^1.18"
-ruff = "^0.14.3"
+ruff = "^0.15.11"
 
 [tool.mypy]
 strict = true
@@ -32,8 +32,8 @@ select = ["ALL"]
 ignore = ["D"]
 
 [tool.poetry]
-requires-poetry = ">=2.1"
+requires-poetry = ">=2.2"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
