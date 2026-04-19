@@ -25,9 +25,11 @@ ruff = "^0.14.3"
 strict = true
 
 [tool.ruff]
+target-version = "py39"
+
+[tool.ruff.lint]
 select = ["ALL"]
 ignore = ["D"]
-target-version = "py39"
 
 [tool.poetry]
 requires-poetry = ">=2.1"
