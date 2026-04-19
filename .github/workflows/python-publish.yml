@@ -8,8 +8,13 @@ on:
       - "*.*.*"
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/ke2daira
+    permissions:
+      id-token: write
 
     steps:
     - uses: actions/checkout@v5
@@ -23,28 +28,6 @@ jobs:
       run: poetry sync
     - name: Build package
       run: poetry build
-    - name: Upload distributions
-      uses: actions/upload-artifact@v4
-      with:
-        name: release-dists
-        path: dist/
-
-  publish:
-    needs:
-      - build
-    runs-on: ubuntu-latest
-    environment:
-      name: pypi
-      url: https://pypi.org/p/ke2daira
-    permissions:
-      id-token: write
-
-    steps:
-    - name: Download distributions
-      uses: actions/download-artifact@v5
-      with:
-        name: release-dists
-        path: dist/
     - name: Publish to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
