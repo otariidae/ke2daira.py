@@ -17,7 +17,7 @@ homepage = "https://github.com/otariidae/ke2daira.py"
 repository = "https://github.com/otariidae/ke2daira.py"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^9.0.3"
+pytest = "^9.1.1"
 mypy = "^2.1.0"
 ruff = "^0.15.20"
 
